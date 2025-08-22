@@ -134,7 +134,7 @@ export default function Navbar() {
                     <Phone className="w-4 h-4" />
                     <span className="absolute inset-0 rounded-full" />
                   </motion.span>
-                  +91-9422117922
+                  +91-94221 17922
                 </motion.span>
                 {/* Soft pulse ring */}
                 <motion.span
