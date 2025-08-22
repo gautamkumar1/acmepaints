@@ -10,10 +10,9 @@ const dmSans = DM_Sans({
 })
 
 export const metadata: Metadata = {
-  title: "ProPaint - Professional Painting Services",
+  title: "AcmePaints - Professional Painting Services",
   description:
     "Licensed, insured, and bonded painting contractor serving Southern California for over 16 years. Get your free estimate today!",
-  generator: "v0.app",
 }
 
 export default function RootLayout({
