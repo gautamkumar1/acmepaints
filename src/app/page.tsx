@@ -33,7 +33,7 @@ export default function Home() {
 
             <Button className="bg-primary hover:bg-primary/90">
               <Phone className="w-4 h-4 mr-2" />
-              (888) 990-9194
+              +919422117922
             </Button>
           </div>
         </div>

@@ -33,7 +33,7 @@ function HeroSection() {
                   className="border-primary text-primary hover:bg-primary/5 bg-transparent"
                 >
                   <Phone className="w-4 h-4 mr-2" />
-                  Call (888) 990-9194
+                  Call +919422117922
                 </Button>
               </div>
 
