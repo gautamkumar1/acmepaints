@@ -85,7 +85,7 @@ function HeroSection() {
                     transition={{ type: 'spring', stiffness: 420, damping: 22 }}
                   >
                     <Phone className="w-4 h-4 mr-2" />
-                    Call +91-94221 17922
+                    <a href="tel:+919422117922">+91-94221 17922</a>
                   </motion.button>
                 </Button>
               </motion.div>

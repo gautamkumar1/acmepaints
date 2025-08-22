@@ -1,6 +1,7 @@
 import HeroSection from "@/components/Hero-section";
 import ServicesSection from "@/components/ServicesSection";
 import Navbar from "@/components/Navbar";
+import CoverdSection from "@/components/CoverdSection";
 export default function Home() {
   return (
     <div className="min-h-screen bg-background">
@@ -13,6 +14,9 @@ export default function Home() {
       {/* Services Section */}
       <section id="services" className="scroll-mt-24 py-20 bg-muted/30">
         <ServicesSection />
+      </section>
+      <section className="scroll-mt-24 py-20 bg-muted/30">
+       <CoverdSection />
       </section>
 
       {/* Footer */}
