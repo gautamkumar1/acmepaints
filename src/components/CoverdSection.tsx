@@ -21,8 +21,7 @@ function CoverdSection() {
     <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <motion.div
         initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, amount: 0.25 }}
+        animate="show"
         variants={container}
         className="space-y-10"
       >
@@ -55,8 +54,7 @@ function CoverdSection() {
               <motion.h3
                 className="text-white text-2xl lg:text-3xl font-semibold"
                 initial={{ y: 8, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                viewport={{ once: true }}
+                animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.4 }}
               >
                 Interior Painting
@@ -64,8 +62,7 @@ function CoverdSection() {
               <motion.p
                 className="mt-2 text-white/85 max-w-xl"
                 initial={{ y: 10, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                viewport={{ once: true }}
+                animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.45, delay: 0.05 }}
               >
                 Give your walls a flawless finish with vibrant shades that bring warmth and style to your home.
