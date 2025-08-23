@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import CoverdSection from "@/components/CoverdSection";
 import PaintingPlanSection from "@/components/PaintingPlanSection";
 import WhyUs from "@/components/WhyUs";
+import Testimonials from "@/components/Testimonials";
 export default function Home() {
   return (
     <div className="min-h-screen bg-background">
@@ -23,9 +24,12 @@ export default function Home() {
       <section className="scroll-mt-24 py-20 bg-muted/30">
        <PaintingPlanSection />
       </section>
-      <section className="scroll-mt-24 py-20 bg-muted/30">
-       <WhyUs />
-      </section>
+        <section className="scroll-mt-24 py-20 bg-muted/30">
+        <WhyUs />
+        </section>
+        <section className="scroll-mt-24 py-20 bg-muted/30">
+        <Testimonials />
+        </section>
 
       {/* Footer */}
       <footer className="bg-muted/50 py-12">
