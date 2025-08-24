@@ -27,7 +27,7 @@ const FaqSection = React.forwardRef<HTMLElement, FaqSectionProps>(
       <section
         ref={ref}
         className={cn(
-          "py-16 w-full bg-background",
+          "py-16 w-full bg-background px-4 sm:px-6",
           className
         )}
         {...props}
@@ -117,11 +117,11 @@ const FaqItem = React.forwardRef<
       <Button
         variant="ghost"
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full px-6 py-4 h-auto justify-between hover:bg-transparent"
+        className="w-full px-4 sm:px-6 py-4 h-auto justify-between items-start whitespace-normal text-left hover:bg-transparent"
       >
         <h3
           className={cn(
-            "text-base font-medium transition-colors duration-200 text-left",
+            "text-base font-medium transition-colors duration-200 text-left break-words whitespace-normal flex-1 min-w-0",
             "text-foreground"
           )}
         >
@@ -157,12 +157,12 @@ const FaqItem = React.forwardRef<
               transition: { duration: 0.2, ease: "easeIn" },
             }}
           >
-            <div className="px-6 pb-4 pt-2">
+            <div className="px-4 sm:px-6 pb-4 pt-2">
               <motion.p
                 initial={{ y: -10, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: -10, opacity: 0 }}
-                className="text-sm text-foreground/80 leading-relaxed"
+                className="text-sm text-foreground/80 leading-relaxed break-words"
               >
                 {answer}
               </motion.p>

@@ -87,7 +87,7 @@ function ContactSupportModal({ onClose }: { onClose: () => void }) {
       />
       <div
         ref={modalRef}
-        className="relative w-full max-w-md rounded-lg border border-border bg-background p-6 shadow-lg"
+        className="relative w-full max-w-md max-h-[85vh] overflow-y-auto rounded-lg border border-border bg-background p-4 sm:p-6 shadow-lg"
       >
         <button
           onClick={onClose}

@@ -1,10 +1,11 @@
 import { Mail, Phone, MapPin, Paintbrush2, Instagram } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
+import Link from "next/link"
 
 export default function Footer() {
   return (
-    <footer className="bg-card border-t border-border">
+    <footer id="contact" className="bg-card border-t border-border">
       <div className="max-w-6xl mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand Section */}
@@ -53,18 +54,15 @@ export default function Footer() {
           <div className="space-y-4">
             <h4 className="font-serif font-bold text-lg text-foreground">Quick Links</h4>
             <nav className="space-y-2">
-              <a href="#" className="block text-muted-foreground hover:text-accent transition-colors font-sans text-sm">
-                About Us
-              </a>
-              <a href="#" className="block text-muted-foreground hover:text-accent transition-colors font-sans text-sm">
+              <Link href="/" className="block text-muted-foreground hover:text-accent transition-colors font-sans text-sm">
+                Home
+              </Link>
+              <a href="#services" className="block text-muted-foreground hover:text-accent transition-colors font-sans text-sm">
                 Our Services
               </a>
-              <a href="#" className="block text-muted-foreground hover:text-accent transition-colors font-sans text-sm">
-                Products
-              </a>
-              <a href="#" className="block text-muted-foreground hover:text-accent transition-colors font-sans text-sm">
+              <Link href="/contact" className="block text-muted-foreground hover:text-accent transition-colors font-sans text-sm">
                 Contact
-              </a>
+              </Link>
             </nav>
           </div>
 

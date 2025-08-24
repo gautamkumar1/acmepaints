@@ -18,7 +18,7 @@ function CoverdSection() {
   }
 
   return (
-    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden">
       <motion.div
         initial="hidden"
         animate="show"
@@ -45,6 +45,8 @@ function CoverdSection() {
               src="/Interior-wall-painting.jpg"
               alt="Interior wall painting in warm, vibrant shades"
               className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+              loading="lazy"
+              decoding="async"
               initial={{ scale: 1 }}
               animate={{ scale: [1, 1.03, 1] }}
               transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
@@ -82,6 +84,8 @@ function CoverdSection() {
               src="/House-exterior-painting.jpg"
               alt="Exterior house painting with durable weatherproof finish"
               className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+              loading="lazy"
+              decoding="async"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
             <div className="relative h-full p-6 flex flex-col justify-end">
@@ -104,6 +108,8 @@ function CoverdSection() {
               src="/Waterproofing.jpeg"
               alt="Professional waterproofing service being applied to wall"
               className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+              loading="lazy"
+              decoding="async"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
             <div className="relative h-full p-6 flex flex-col justify-end">

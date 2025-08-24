@@ -3,14 +3,14 @@
 import React from "react"
 import { useEffect, useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Phone, Menu, X } from "lucide-react"
+import { Phone, Menu, X, CalendarCheck, Paintbrush2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import Link from "next/link"
 
 const navLinks = [
+  { label: "Home", href: "/" },
   { label: "Services", href: "#services" },
-  { label: "About", href: "#about" },
-  { label: "Gallery", href: "#gallery" },
-  { label: "Contact", href: "#contact" },
+  { label: "Contact", href: "/contact" },
 ]
 
 export default function Navbar() {
@@ -20,7 +20,9 @@ export default function Navbar() {
 
   useEffect(() => {
     const NAVBAR_OFFSET_PX = 96 // pt-24 -> 6rem -> 96px
-    const ids = navLinks.map((l) => l.href.replace('#', ''))
+    const ids = navLinks
+      .filter((l) => l.href.startsWith('#'))
+      .map((l) => l.href.slice(1))
 
     const handleScroll = () => {
       const scrollY = window.scrollY
@@ -47,79 +49,77 @@ export default function Navbar() {
   }, [])
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b bg-white/70 backdrop-blur supports-[backdrop-filter]:bg-white/60">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+    <header className="fixed inset-x-0 top-0 z-[100] border-b bg-white/70 backdrop-blur supports-[backdrop-filter]:bg-white/60">
+      <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div className="flex items-center h-16 gap-2 w-full">
           {/* Logo */}
-          <a href="#" className="flex items-center space-x-2">
-            <motion.div
-              whileHover={{ rotate: 5, scale: 1.03 }}
-              transition={{ type: "spring", stiffness: 300, damping: 18 }}
-              className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center"
-            >
-              <div className="w-4 h-4 bg-white rounded-sm" />
-            </motion.div>
-            <span className="text-xl font-bold text-foreground">AcmePaints</span>
-          </a>
+          <Link href="/" className="flex items-center space-x-2 shrink-0">
+            <Paintbrush2 className="h-8 w-8 text-primary" />
+            <span className="text-xl font-bold text-foreground">Acme Paints</span>
+          </Link>
 
-          {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-1">
-            {navLinks.map((link, i) => (
-              <a
-                key={link.href}
-                href={link.href}
-                aria-current={activeSection === link.href.replace('#', '') ? 'page' : undefined}
-                onClick={(e) => {
-                  e.preventDefault()
-                  const id = link.href.replace('#', '')
-                  const el = document.getElementById(id)
-                  if (el) {
-                    const NAVBAR_OFFSET_PX = 96
-                    const target = el.getBoundingClientRect().top + window.scrollY - NAVBAR_OFFSET_PX + 1
-                    window.scrollTo({ top: target, behavior: 'smooth' })
-                  }
-                }}
-                className={`relative px-3 py-2 transition-colors group ${
-                  activeSection === link.href.replace('#', '')
-                    ? 'text-foreground'
-                    : 'text-muted-foreground hover:text-foreground'
-                }`}
-                onMouseEnter={() => setHoveredIndex(i)}
-                onMouseLeave={() => setHoveredIndex(null)}
-              >
-                <span className="relative z-10 font-medium">{link.label}</span>
-                <AnimatePresence>
-                  {activeSection === link.href.replace('#', '') && (
-                    <motion.span
-                      layoutId="navActive"
-                      className="absolute inset-y-1 inset-x-2 rounded-md bg-primary/10"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.2 }}
-                    />
-                  )}
-                </AnimatePresence>
-                <AnimatePresence>
-                  {hoveredIndex === i && (
-                    <motion.span
-                      layoutId="navHover"
-                      className="absolute inset-x-1 -bottom-0.5 h-0.5 rounded-full bg-primary/80"
-                      initial={{ opacity: 0, scaleX: 0 }}
-                      animate={{ opacity: 1, scaleX: 1 }}
-                      exit={{ opacity: 0, scaleX: 0 }}
-                      transition={{ duration: 0.2 }}
-                    />
-                  )}
-                </AnimatePresence>
-              </a>
-            ))}
-          </nav>
+          {/* Middle nav (Desktop) */}
+          <div className="hidden md:flex flex-1 justify-center">
+            <nav className="flex items-center gap-1 whitespace-nowrap">
+              {navLinks.map((link, i) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  aria-current={link.href.startsWith('#') && activeSection === link.href.slice(1) ? 'page' : undefined}
+                  onClick={(e) => {
+                    if (link.href.startsWith('#')) {
+                      e.preventDefault()
+                      const id = link.href.slice(1)
+                      const el = document.getElementById(id)
+                      if (el) {
+                        const NAVBAR_OFFSET_PX = 96
+                        const target = el.getBoundingClientRect().top + window.scrollY - NAVBAR_OFFSET_PX + 1
+                        window.scrollTo({ top: target, behavior: 'smooth' })
+                      }
+                    }
+                  }}
+                  className={`relative px-3 py-2 transition-colors group ${
+                    link.href.startsWith('#') && activeSection === link.href.slice(1)
+                      ? 'text-foreground'
+                      : 'text-muted-foreground hover:text-foreground'
+                  }`}
+                  onMouseEnter={() => setHoveredIndex(i)}
+                  onMouseLeave={() => setHoveredIndex(null)}
+                >
+                  <span className="relative z-10 font-medium">{link.label}</span>
+                  <AnimatePresence>
+                    {link.href.startsWith('#') && activeSection === link.href.slice(1) && (
+                      <motion.span
+                        layoutId="navActive"
+                        className="absolute inset-y-1 inset-x-2 rounded-md bg-primary/10"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                      />
+                    )}
+                  </AnimatePresence>
+                  <AnimatePresence>
+                    {hoveredIndex === i && (
+                      <motion.span
+                        layoutId="navHover"
+                        className="absolute inset-x-1 -bottom-0.5 h-0.5 rounded-full bg-primary/80"
+                        initial={{ opacity: 0, scaleX: 0 }}
+                        animate={{ opacity: 1, scaleX: 1 }}
+                        exit={{ opacity: 0, scaleX: 0 }}
+                        transition={{ duration: 0.2 }}
+                      />
+                    )}
+                  </AnimatePresence>
+                </Link>
+              ))}
+            </nav>
+          </div>
 
-          {/* Phone CTA (Desktop) */}
-          <div className="hidden md:block">
+          {/* Right CTAs (Desktop) */}
+          <div className="hidden md:flex items-center gap-2 ml-auto shrink-0">
             <Button asChild className="relative overflow-hidden bg-primary hover:bg-primary/90">
-              <a href="tel:+91-9422117922" aria-label="Call us">
+              <a href="tel:+919422117922" aria-label="Call us">
                 <motion.span
                   initial={{ scale: 1 }}
                   whileHover={{ scale: 1.05 }}
@@ -134,9 +134,8 @@ export default function Navbar() {
                     <Phone className="w-4 h-4" />
                     <span className="absolute inset-0 rounded-full" />
                   </motion.span>
-                  <a href="tel:+919422117922">Call Us</a>
+                  <span>Call Us</span>
                 </motion.span>
-                {/* Soft pulse ring */}
                 <motion.span
                   aria-hidden
                   className="pointer-events-none absolute -inset-px rounded-md ring-2 ring-primary/20"
@@ -146,27 +145,39 @@ export default function Navbar() {
                 />
               </a>
             </Button>
+
+            <Button
+              asChild
+              className="relative overflow-hidden bg-amber-600 hover:bg-amber-700 text-white shadow-sm"
+            >
+              <a
+                href="#consultation"
+                aria-label="Book free consultancy"
+                onClick={(e) => {
+                  e.preventDefault()
+                  window.dispatchEvent(new Event('open-consultation-modal'))
+                }}
+                className="flex items-center"
+              >
+                <CalendarCheck className="w-4 h-4 mr-2" />
+                Book Free Consultancy
+              </a>
+            </Button>
           </div>
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden inline-flex items-center justify-center rounded-md p-2 text-muted-foreground hover:text-foreground hover:bg-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-md ml-auto shrink-0 text-foreground border border-border bg-white shadow-sm hover:text-foreground hover:bg-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             aria-label="Toggle menu"
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
             onClick={() => setMenuOpen((v) => !v)}
           >
-            <AnimatePresence initial={false} mode="wait">
-              {menuOpen ? (
-                <motion.span key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }}>
-                  <X className="w-6 h-6" />
-                </motion.span>
-              ) : (
-                <motion.span key="menu" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }}>
-                  <Menu className="w-6 h-6" />
-                </motion.span>
-              )}
-            </AnimatePresence>
+            {menuOpen ? (
+              <X className="w-6 h-6 text-foreground" />
+            ) : (
+              <Menu className="w-6 h-6 text-foreground" />
+            )}
           </button>
         </div>
       </div>
@@ -180,34 +191,36 @@ export default function Navbar() {
             animate={{ opacity: 1, scaleY: 1 }}
             exit={{ opacity: 0, scaleY: 0 }}
             transition={{ duration: 0.22, ease: "easeOut" }}
-            className="md:hidden origin-top border-t bg-background/95 backdrop-blur"
+            className="md:hidden origin-top border-t bg-background/95 backdrop-blur w-full overflow-x-hidden"
           >
             <div className="px-4 sm:px-6 lg:px-8 py-4 space-y-2">
               <div className="grid gap-1">
                 {navLinks.map((link) => (
-                  <a
+                  <Link
                     key={link.href}
                     href={link.href}
-                    aria-current={activeSection === link.href.replace('#', '') ? 'page' : undefined}
+                    aria-current={link.href.startsWith('#') && activeSection === link.href.slice(1) ? 'page' : undefined}
                     onClick={(e) => {
-                      e.preventDefault()
-                      const id = link.href.replace('#', '')
-                      const el = document.getElementById(id)
-                      if (el) {
-                        const NAVBAR_OFFSET_PX = 96
-                        const target = el.getBoundingClientRect().top + window.scrollY - NAVBAR_OFFSET_PX + 1
-                        window.scrollTo({ top: target, behavior: 'smooth' })
+                      if (link.href.startsWith('#')) {
+                        e.preventDefault()
+                        const id = link.href.slice(1)
+                        const el = document.getElementById(id)
+                        if (el) {
+                          const NAVBAR_OFFSET_PX = 96
+                          const target = el.getBoundingClientRect().top + window.scrollY - NAVBAR_OFFSET_PX + 1
+                          window.scrollTo({ top: target, behavior: 'smooth' })
+                        }
                       }
                       setMenuOpen(false)
                     }}
                     className={`block rounded-md px-3 py-2 text-base transition-colors ${
-                      activeSection === link.href.replace('#', '')
+                      link.href.startsWith('#') && activeSection === link.href.slice(1)
                         ? 'text-foreground bg-accent'
                         : 'text-muted-foreground hover:text-foreground hover:bg-accent'
                     }`}
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 ))}
               </div>
               <Button asChild className="w-full bg-primary hover:bg-primary/90">

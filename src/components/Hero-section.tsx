@@ -9,6 +9,11 @@ import { Typewriter } from './ui/typewriter'
 
 function HeroSection() {
   const [isModalOpen, setIsModalOpen] = React.useState(false)
+  React.useEffect(() => {
+    const handleOpen = (_e: Event) => setIsModalOpen(true)
+    window.addEventListener('open-consultation-modal', handleOpen)
+    return () => window.removeEventListener('open-consultation-modal', handleOpen)
+  }, [])
   const container: Variants = {
     hidden: { opacity: 0, y: 24 },
     visible: {
@@ -30,7 +35,7 @@ function HeroSection() {
 
   return (
     <>
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden">
           <motion.div
             className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
             initial="hidden"
@@ -119,19 +124,21 @@ function HeroSection() {
               <motion.img
                 src="/modern-painted-house.png"
                 alt="Professional house painting project"
-                className="rounded-2xl shadow-2xl"
+                className="w-full h-auto rounded-2xl shadow-2xl object-cover"
+                loading="lazy"
+                decoding="async"
                 animate={{ y: [0, -6, 0] }}
                 transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
               />
               <motion.div
-                className="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-lg"
+                className="absolute bottom-3 left-3 sm:-bottom-6 sm:-left-6 bg-white p-4 sm:p-6 rounded-xl shadow-lg"
                 initial={{ opacity: 0, x: -16, y: 16 }}
                 whileInView={{ opacity: 1, x: 0, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               >
                 <div className="flex items-center space-x-3">
-                  <CheckCircle className="w-8 h-8 text-primary" />
+                  <CheckCircle className="w-6 h-6 sm:w-8 sm:h-8 text-primary" />
                   <div>
                     <div className="font-semibold text-foreground">16+ Years</div>
                     <div className="text-sm text-muted-foreground">Experience</div>
@@ -159,7 +166,7 @@ function HeroSection() {
                 key="dialog"
                 role="dialog"
                 aria-modal="true"
-                className="relative w-full max-w-lg rounded-2xl bg-background p-6 shadow-2xl"
+                className="relative w-full max-w-lg max-h-[85vh] overflow-y-auto rounded-2xl bg-background p-4 sm:p-6 shadow-2xl"
                 initial={{ y: 24, opacity: 0, scale: 0.98 }}
                 animate={{ y: 0, opacity: 1, scale: 1 }}
                 exit={{ y: 16, opacity: 0, scale: 0.98 }}

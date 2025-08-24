@@ -57,13 +57,14 @@ const StepCard: React.FC<StepCardProps> = ({ step, title, description, icon, rev
       <Card className="relative overflow-hidden border border-border/60 bg-background hover:border-primary/50 hover:shadow-xl transition-all duration-300">
         <CardContent className="p-8 text-center relative">
           <div className="mb-6 flex justify-center">
-            <div className="relative">
-              <div className="w-20 h-20 mx-auto rounded-full border-2 border-dashed border-primary/60 bg-primary/5 text-primary flex items-center justify-center text-2xl font-bold">
+            <div className="relative w-20 h-20">
+              <div className="absolute inset-0 rounded-full bg-primary/15 blur-md" />
+              <div className="absolute inset-0 rounded-full border-2 border-primary/20" />
+              <div className="absolute inset-1 rounded-full border-2 border-dashed border-primary/50" />
+              <div className="relative w-full h-full rounded-full bg-primary text-primary-foreground flex items-center justify-center text-2xl font-bold shadow-md">
                 {step}
               </div>
-              <div className="pointer-events-none absolute inset-0 -rotate-6">
-                <div className="w-20 h-20 mx-auto rounded-[2.75rem] border-2 border-dashed border-primary/30" />
-              </div>
+              
             </div>
           </div>
 
@@ -169,7 +170,7 @@ const PaintingPlanSection: React.FC = () => {
           <div
             role="dialog"
             aria-modal="true"
-            className="relative w-full max-w-lg rounded-2xl bg-background p-6 shadow-2xl"
+            className="relative w-full max-w-lg max-h-[85vh] overflow-y-auto rounded-2xl bg-background p-4 sm:p-6 shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
             <button
