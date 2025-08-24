@@ -63,7 +63,7 @@ function ServicesSection() {
   return (
     <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="relative text-center space-y-3 mb-14">
-        <h2 className="text-3xl lg:text-4xl font-bold">
+        <h2 className="text-3xl lg:text-4xl font-bold text-primary">
           Our Services
         </h2>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
