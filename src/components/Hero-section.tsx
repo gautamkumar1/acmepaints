@@ -1,11 +1,11 @@
 "use client"
 
-import { CheckCircle, Phone, Star, X } from 'lucide-react'
+import { Phone, Star, X } from 'lucide-react'
 import React from 'react'
 import { Button } from './ui/button'
-import { Badge } from './ui/badge'
 import { motion, type Variants, AnimatePresence } from 'framer-motion'
 import { Typewriter } from './ui/typewriter'
+import HeroCarousel from './HeroCarousel'
 
 function HeroSection() {
   const [isModalOpen, setIsModalOpen] = React.useState(false)
@@ -121,30 +121,7 @@ function HeroSection() {
               whileInView="visible"
               viewport={{ once: true, amount: 0.2 }}
             >
-              <motion.img
-                src="/modern-painted-house.png"
-                alt="Professional house painting project"
-                className="w-full h-auto rounded-2xl shadow-2xl object-cover"
-                loading="lazy"
-                decoding="async"
-                animate={{ y: [0, -6, 0] }}
-                transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-              />
-              <motion.div
-                className="absolute bottom-3 left-3 sm:-bottom-6 sm:-left-6 bg-white p-4 sm:p-6 rounded-xl shadow-lg"
-                initial={{ opacity: 0, x: -16, y: 16 }}
-                whileInView={{ opacity: 1, x: 0, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              >
-                <div className="flex items-center space-x-3">
-                  <CheckCircle className="w-6 h-6 sm:w-8 sm:h-8 text-primary" />
-                  <div>
-                    <div className="font-semibold text-foreground">16+ Years</div>
-                    <div className="text-sm text-muted-foreground">Experience</div>
-                  </div>
-                </div>
-              </motion.div>
+              <HeroCarousel />
             </motion.div>
           </motion.div>
         </div>
