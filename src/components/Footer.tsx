@@ -1,4 +1,4 @@
-import { Mail, Phone, MapPin, Paintbrush2, Instagram } from "lucide-react"
+import { Mail, Phone, MapPin, Paintbrush2, Instagram, Facebook } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
@@ -98,11 +98,20 @@ export default function Footer() {
               <div className="hidden md:block h-4 w-px bg-border mx-1" aria-hidden="true" />
               <div className="flex items-center gap-3">
                 <a
-                  href="#"
+                  href="https://www.instagram.com/acmepaints?igsh=enE0MmlnYWpkZnM1&utm_source=qr"
+                  target="_blank"
                   aria-label="Visit our Instagram"
                   className="text-muted-foreground hover:text-primary transition-colors"
                 >
                   <Instagram className="h-5 w-5" />
+                </a>
+                <a
+                  href="https://www.facebook.com/share/1CmX9QH7Rv/"
+                  target="_blank"
+                  aria-label="Visit our Facebook"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  <Facebook className="h-5 w-5" />
                 </a>
               </div>
             </div>
