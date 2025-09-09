@@ -2,6 +2,7 @@ import { Mail, Phone, MapPin, Paintbrush2, Instagram } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import Image from "next/image"
 
 export default function Footer() {
   return (
@@ -10,9 +11,9 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand Section */}
           <div className="space-y-4">
-            <div className="flex items-center gap-2">
-              <Paintbrush2 className="h-8 w-8 text-primary" />
-              <h3 className="font-serif font-bold text-xl text-foreground">Acme Paints</h3>
+            <div className="flex items-center">
+              <Image src="/logo.jpg" alt="Acme Paints Logo" className="mix-blend-multiply" width={36} height={36} />
+              <h3 className="font-serif font-bold text-xl text-foreground"><span className="text-[#fd1717]">Acme</span>Paints</h3>
             </div>
             <p className="text-muted-foreground font-sans text-sm leading-relaxed">
               Professional paint solutions for all your residential and commercial needs. Quality products, expert

@@ -6,11 +6,13 @@ import { motion, AnimatePresence } from "framer-motion"
 import { Phone, Menu, X, CalendarCheck, Paintbrush2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import Image from 'next/image';
 
 const navLinks = [
   { label: "Home", href: "/" },
   { label: "Services", href: "#services" },
   { label: "Contact", href: "/contact" },
+  { label: "Paint Guide", href: "/paint-guide" },
 ]
 
 export default function Navbar() {
@@ -54,8 +56,8 @@ export default function Navbar() {
         <div className="flex items-center h-16 gap-2 w-full">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2 shrink-0">
-            <Paintbrush2 className="h-8 w-8 text-primary" />
-            <span className="text-xl font-bold text-foreground">Acme Paints</span>
+            <Image src="/logo.jpg" alt="Acme Paints Logo" className="mix-blend-multiply" width={32} height={32} />
+            <span className="text-xl font-bold text-foreground"><span className="text-[#fd1717]">Acme</span>Paints</span>
           </Link>
 
           {/* Middle nav (Desktop) */}
@@ -78,11 +80,10 @@ export default function Navbar() {
                       }
                     }
                   }}
-                  className={`relative px-3 py-2 transition-colors group ${
-                    link.href.startsWith('#') && activeSection === link.href.slice(1)
-                      ? 'text-foreground'
-                      : 'text-muted-foreground hover:text-foreground'
-                  }`}
+                  className={`relative px-3 py-2 transition-colors group ${link.href.startsWith('#') && activeSection === link.href.slice(1)
+                    ? 'text-foreground'
+                    : 'text-muted-foreground hover:text-foreground'
+                    }`}
                   onMouseEnter={() => setHoveredIndex(i)}
                   onMouseLeave={() => setHoveredIndex(null)}
                 >
@@ -213,11 +214,10 @@ export default function Navbar() {
                       }
                       setMenuOpen(false)
                     }}
-                    className={`block rounded-md px-3 py-2 text-base transition-colors ${
-                      link.href.startsWith('#') && activeSection === link.href.slice(1)
-                        ? 'text-foreground bg-accent'
-                        : 'text-muted-foreground hover:text-foreground hover:bg-accent'
-                    }`}
+                    className={`block rounded-md px-3 py-2 text-base transition-colors ${link.href.startsWith('#') && activeSection === link.href.slice(1)
+                      ? 'text-foreground bg-accent'
+                      : 'text-muted-foreground hover:text-foreground hover:bg-accent'
+                      }`}
                   >
                     {link.label}
                   </Link>
