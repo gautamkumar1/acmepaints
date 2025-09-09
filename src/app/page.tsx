@@ -10,9 +10,7 @@ import Footer from "@/components/Footer";
 import ColourGuide from "@/components/ColourGuide";
 export default function Home() {
   return (
-    <div className="min-h-screen bg-background">
-       {/* Header */}
-      <Navbar />
+    <div className="min-h-screen bg-background pt-16">
        {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-primary/5 to-secondary/5 pt-24 pb-20">
         <HeroSection />
@@ -39,9 +37,6 @@ export default function Home() {
         <section className="scroll-mt-24 py-20 bg-muted/30">
         <ActualFaqSection />
         </section>
-
-      {/* Footer */}
-      <Footer />
 
       {/* Floating WhatsApp Button */}
       <a
