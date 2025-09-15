@@ -158,7 +158,7 @@ export default function ContactForm() {
                             </Button>
 
                             <p className="text-xs text-muted-foreground text-center leading-relaxed">
-                                By submitting this form, you agree to receive consultation calls from Nexon Paints. We respect your
+                                By submitting this form, you agree to receive consultation calls from Acme Paints. We respect your
                                 privacy and won't share your information.
                             </p>
                         </form>

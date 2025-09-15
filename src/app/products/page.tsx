@@ -103,7 +103,7 @@ export default function Products() {
             Perfect Colors for Every Home
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
-            From interiors to exteriors, Aceme Paints brings style, durability, and a premium finish to make your home shine.
+            From interiors to exteriors, Acme Paints brings style, durability, and a premium finish to make your home shine.
           </p>
         </div>
 
